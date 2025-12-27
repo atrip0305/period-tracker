@@ -1,0 +1,8 @@
+node_modules
+dist
+.env
+.env.*
+.prisma
+sqlite.db
+*.db
+.DS_Store
