@@ -1,0 +1,32 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Cycle {
+  id        String   @id @default(uuid())
+  startDate DateTime
+  endDate   DateTime?
+
+  dayLogs   DayLog[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model DayLog {
+  id        String   @id @default(uuid())
+  date      DateTime @unique
+  flow      String   @default("NONE")
+  notes     String?
+
+  cycleId   String?
+  cycle     Cycle?   @relation(fields: [cycleId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
