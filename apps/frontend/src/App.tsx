@@ -1,25 +1,31 @@
-import { useState } from 'react';
-import { DailyLogPanel } from './features/daily-log/DailyLogPanel';
+import { Calendar } from './components/calendar/Calendar';
+import type { CalendarDay } from './types/calendar';
 
-function App() {
-  const [open, setOpen] = useState(true);
+const mockDays: CalendarDay[] = [
+  {
+    date: '2025-01-10',
+    isToday: false,
+    log: { hadPeriod: true, flow: 'HEAVY' },
+  },
+  {
+    date: '2025-01-11',
+    isToday: true,
+    prediction: { type: 'OVULATION', confidence: 'LOW' },
+  },
+  {
+    date: '2025-01-12',
+    isToday: false,
+    log: { hadPeriod: true, flow: 'MEDIUM' },
+    prediction: { type: 'OVULATION', confidence: 'HIGH' },
+    flags: ['OVERLAP_WITH_MENSES'],
+  },
+];
 
+export default function App() {
   return (
-    <div style={{ padding: 24 }}>
-      <h1>Period Tracker</h1>
-
-      <button onClick={() => setOpen(true)}>
-        Open Daily Log
-      </button>
-
-      <DailyLogPanel
-        date="2025-01-15"
-        isOpen={open}
-        isPastDate={true}
-        onClose={() => setOpen(false)}
-      />
+    <div className="min-h-screen bg-[#1a1625] text-rose-100/90 p-4">
+      <Calendar days={mockDays} />
     </div>
   );
 }
 
-export default App;

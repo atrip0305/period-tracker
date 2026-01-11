@@ -1,4 +1,8 @@
 /* Base reset */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -7,6 +11,4 @@
 
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  background-color: #ffffff;
-  color: #111;
 }
