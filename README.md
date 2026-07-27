@@ -436,8 +436,8 @@ No external database server is required for the current backend because it uses 
 ## 1. Clone the repository
 
 ```bash
-git clone <your-repository-url>
-cd <repository-folder>
+git clone https://github.com/atrip0305/period-tracker
+cd atrip0305-period-tracker
 ```
 
 ---
