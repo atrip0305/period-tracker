@@ -30,6 +30,13 @@ CycleSync explores a different approach:
 * keep the prediction engine deterministic and testable
 
 ---
+<img width="1041" height="543" alt="image" src="https://github.com/user-attachments/assets/4a2adcd4-1508-4c36-ab0f-1bc743b3e908" />
+<img width="1054" height="619" alt="image" src="https://github.com/user-attachments/assets/1f5df683-945f-45b6-b15f-da41f4f4d1d3" />
+<img width="1033" height="580" alt="image" src="https://github.com/user-attachments/assets/e9eab313-0007-4f87-8f8a-64a7e3f7c03a" />
+<img width="332" height="550" alt="image" src="https://github.com/user-attachments/assets/0392a166-42f8-4bd1-855e-e1d6b33770d4" />
+
+
+
 
 ## Solution
 
@@ -437,7 +444,7 @@ No external database server is required for the current backend because it uses 
 
 ```bash
 git clone https://github.com/atrip0305/period-tracker
-cd atrip0305-period-tracker
+cd period-tracker
 ```
 
 ---
