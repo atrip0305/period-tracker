@@ -1,6 +1,6 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from 'react';
 import type { DailyLogInput } from './types';
+import { storage } from '../../storage';
 
 export function useDailyLog() {
   const [loading, setLoading] = useState(false);
@@ -11,25 +11,44 @@ export function useDailyLog() {
     setError(null);
 
     try {
-      const res = await fetch('http://192.168.1.9:3000/logs', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(input),
-      });
+      const flow =
+        input.flow && input.flow !== 'NONE'
+          ? input.flow
+          : null;
 
-      if (!res.ok) {
-        const text = await res.text();
-        throw new Error(text);
+      if (!flow) {
+        throw new Error(
+          'There is no period or spotting entry to save for this date.',
+        );
       }
 
-      return await res.json();
-    } catch (e: any) {
-      setError(e.message ?? 'Failed to save log');
-      throw e;
+      await storage.savePeriodLog({
+        date: input.date,
+        flow,
+        notes: input.notes,
+      });
+
+      return {
+        date: input.date,
+        flow,
+        notes: input.notes,
+      };
+    } catch (error) {
+      const message =
+        error instanceof Error
+          ? error.message
+          : 'Failed to save your log.';
+
+      setError(message);
+      throw error;
     } finally {
       setLoading(false);
     }
   }
 
-  return { saveLog, loading, error };
+  return {
+    saveLog,
+    loading,
+    error,
+  };
 }
